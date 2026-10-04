@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { authAPI, socialAPI } from '../../services/api';
+import { authAPI, socialAPI, MEDIA_BASE_URL } from '../../services/api';
 import './Community.css';
 
 const Community = () => {
@@ -14,7 +14,7 @@ const Community = () => {
   const [loading, setLoading] = useState(true);
 
   // Pre-configured fallback popular artist images to fill 5 orbits (local media files)
-  const baseMedia = `http://${window.location.hostname}:8000/media/artists/`;
+  const baseMedia = MEDIA_BASE_URL;
   const fallbackArtistImages = [
     `${baseMedia}the_weeknd.jpg`,
     `${baseMedia}taylor_swift.jpg`,

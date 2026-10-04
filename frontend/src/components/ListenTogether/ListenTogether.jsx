@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { usePlayback } from '../../context/PlaybackContext';
+import { socialAPI } from '../../services/api';
 import './ListenTogether.css';
 
 const ListenTogether = () => {
@@ -13,9 +14,8 @@ const ListenTogether = () => {
 
   const fetchSyncRoom = async () => {
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/social/listen-together/');
-      const data = await res.json();
-      setRoomData(data);
+      const res = await socialAPI.getListenTogether();
+      setRoomData(res.data);
     } catch {
       setRoomData({
         room_name: '⚡ Midnight Frequencies Live Sync',

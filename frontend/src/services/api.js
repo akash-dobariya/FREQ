@@ -1,6 +1,18 @@
 import axios from 'axios';
 
-const API_BASE_URL = `http://${window.location.hostname}:8000/api`;
+export const API_BASE_URL = (
+  import.meta.env.VITE_API_URL || `http://${window.location.hostname}:8000/api`
+).replace(/\/+$/, '');
+
+const defaultWsProto = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+export const WS_BASE_URL = (
+  import.meta.env.VITE_WS_URL || `${defaultWsProto}//${window.location.hostname}:8000`
+).replace(/\/+$/, '');
+
+export const BACKEND_BASE_URL = API_BASE_URL.replace(/\/api\/?$/, '');
+export const MEDIA_BASE_URL = (
+  import.meta.env.VITE_MEDIA_URL || `${BACKEND_BASE_URL}/media/artists/`
+).replace(/\/+$/, '') + '/';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -89,6 +101,8 @@ export const socialAPI = {
   logListening: (trackId, durationSeconds = 0) => api.post('/social/listening/', { track_id: trackId, duration_seconds: durationSeconds }),
   getListeningFeed: () => api.get('/social/listening/feed/'),
   getLeaderboard: () => api.get('/social/leaderboard/'),
+  getListenTogether: () => api.get('/social/listen-together/'),
+  votePost: (id, vote) => api.post(`/social/posts/${id}/vote/`, { vote }),
 };
 
 export const chatAPI = {

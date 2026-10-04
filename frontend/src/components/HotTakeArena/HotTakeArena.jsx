@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { socialAPI } from '../../services/api';
 import './HotTakeArena.css';
 
 const HotTakeArena = ({ post, onVote }) => {
@@ -26,11 +27,7 @@ const HotTakeArena = ({ post, onVote }) => {
 
     if (post?.id) {
       try {
-        await fetch(`http://127.0.0.1:8000/api/social/posts/${post.id}/vote/`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ vote: type })
-        });
+        await socialAPI.votePost(post.id, type);
       } catch {}
     }
   };

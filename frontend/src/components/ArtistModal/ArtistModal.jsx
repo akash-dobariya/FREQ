@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { usePlayback } from '../../context/PlaybackContext';
+import { musicAPI } from '../../services/api';
 import './ArtistModal.css';
 
 const ArtistModal = ({ artistName, onClose }) => {
@@ -17,13 +18,8 @@ const ArtistModal = ({ artistName, onClose }) => {
     setLoading(true);
     try {
       const encoded = encodeURIComponent(artistName);
-      const res = await fetch(`http://127.0.0.1:8000/api/music/artists/${encoded}/`);
-      if (res.ok) {
-        const json = await res.json();
-        setData(json);
-      } else {
-        throw new Error();
-      }
+      const res = await musicAPI.getArtist(encoded);
+      setData(res.data);
     } catch {
       // Fallback mock details for famous artists
       setData({

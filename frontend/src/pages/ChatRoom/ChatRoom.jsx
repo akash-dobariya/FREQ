@@ -2,11 +2,10 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { usePlayback } from '../../context/PlaybackContext';
-import { chatAPI, authAPI, concertAPI } from '../../services/api';
+import { chatAPI, authAPI, concertAPI, WS_BASE_URL } from '../../services/api';
 import './ChatRoom.css';
 
-const BACKEND_HOST = window.location.hostname;
-const WS_BASE = `ws://${BACKEND_HOST}:8000`;
+const WS_BASE = WS_BASE_URL;
 
 const ChatRoom = () => {
   const { roomId } = useParams();

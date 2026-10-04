@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { authAPI } from '../../services/api';
+import { authAPI, MEDIA_BASE_URL } from '../../services/api';
 import { getImageUrl } from '../../utils/imageHelper';
 import './Register.css';
 
 const GENRES = ['Pop', 'Rock', 'Hip Hop', 'R&B', 'Electronic', 'Jazz', 'Indie', 'Metal', 'Classical', 'Country'];
 
-const baseMedia = `http://${window.location.hostname}:8000/media/artists/`;
+const baseMedia = MEDIA_BASE_URL;
 
 const ARTISTS_POOL = [
   { name: 'The Weeknd', spotify_id: '1XyoAEzJz3u1jUktRihNu6', image: `${baseMedia}the_weeknd.jpg` },
