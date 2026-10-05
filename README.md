@@ -1,5 +1,9 @@
 # FREQ 🎵
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-freqmusic.vercel.app-brightgreen?style=for-the-badge&logo=vercel)](https://freqmusic.vercel.app/)
+
+> 🌐 **Live Website**: [https://freqmusic.vercel.app/](https://freqmusic.vercel.app/)
+
 FREQ is a real-time, interactive music social network that brings people together through sound. Whether you're chatting with friends, discovering new artists, or tuning into live listening rooms, FREQ connects the community through a shared love of music.
 
 ## 🌟 Features
